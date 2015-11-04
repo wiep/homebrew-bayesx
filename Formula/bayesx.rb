@@ -3,7 +3,7 @@
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class BayesXSvnStrategy < SubversionDownloadStrategy
   def quiet_safe_system *args
-    super *args + ['--username', 'anonymous',  '--no-auth-cache', '--non-interactive', '--trust-server-cert']
+    super *args + ['--username', 'anonymous',  '--password', '', '--no-auth-cache', '--non-interactive', '--trust-server-cert']
   end
 end
 
