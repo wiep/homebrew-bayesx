@@ -1,0 +1,78 @@
+Index: trunk/structadd/distr_gamlss.cpp
+===================================================================
+--- trunk/structadd/distr_gamlss.cpp	(revision 1655)
++++ trunk/structadd/distr_gamlss.cpp	(working copy)
+@@ -1134,7 +1134,7 @@
+   // *worktransformlin[0] = exp(eta_mu);
+ 
+ // BEGIN: SAMPLESEL
+-  if (*weight == 0)
++ /* if (*weight == 0)
+     {
+     if (counter==0)
+       {
+@@ -1146,11 +1146,11 @@
+     return 0;
+     }
+   else
+-    {
++    {*/
+ // END: SAMPLESEL
+     return (*weight)*loglikelihood_weightsone(response,linpred);
+ // BEGIN: SAMPLESEL
+-    }
++ //   }
+ // END: SAMPLESEL
+ 
+   }
+@@ -1189,7 +1189,7 @@
+   {
+ 
+ // BEGIN: SAMPLESEL
+-  if (*weight == 0)
++/*  if (*weight == 0)
+     {
+     if (counter==0)
+       {
+@@ -1203,7 +1203,7 @@
+     return 0;
+     }
+   else
+-    {
++    {*/
+ // END: SAMPLESEL
+     double l=0;
+     compute_iwls_wweightschange_weightsone(response,linpred, workingweight,
+@@ -1213,7 +1213,7 @@
+ 
+     return (*weight)*l;
+ // BEGIN: SAMPLESEL
+-    }
++//    }
+ // END: SAMPLESEL
+   }
+ 
+Index: trunk/structadd/distr_gamlss_nadja.cpp
+===================================================================
+--- trunk/structadd/distr_gamlss_nadja.cpp	(revision 1655)
++++ trunk/structadd/distr_gamlss_nadja.cpp	(working copy)
+@@ -8795,8 +8795,8 @@
+   for(i=0;i<nrobs;i++,worklin_current++,workresp++,weightwork++,responsecop++,workresporig++,weightworkcopula++)
+     {
+ // BEGIN: SAMPLESEL
+-    if (*weightwork != 0)
+-      {
++//    if (*weightwork != 0)
++//      {
+ // END: SAMPLESEL
+       if(weightworkcopula!=0)
+         {
+@@ -8812,7 +8812,7 @@
+         }
+       *responsecop = *workresp;
+ // BEGIN: SAMPLESEL
+-      }
++//      }
+ // END: SAMPLESEL
+     }
+   }

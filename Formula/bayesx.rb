@@ -19,12 +19,24 @@ class Bayesx < Formula
   depends_on "gsl"
   depends_on "readline"
 
+  option "with-sample-selection", "EXPERIMENTAL Enable support for sample selection models"
+
 #  head do
 #    patch do
 #      url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/bayesx-eof-svnrevision.diff"
 #      sha256 "1977e4f15ec0ba66d0d52fbabe7580d918f3d8b2c754d78cd57179d0899dbe54"
 #    end
 #  end
+
+
+if build.with? "sample-selection"
+   patch do
+     url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/sample_selection.diff"
+     sha256 "8d4d74fbaea59611856b022b2bc150e58df02f5f58754c4e9b3da3642755d1ae"
+   end
+ end
+
+
 
   def install
     system "cmake", ".", *std_cmake_args
