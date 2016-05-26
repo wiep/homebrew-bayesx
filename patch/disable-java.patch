@@ -1,0 +1,13 @@
+Index: trunk/CMakeLists.txt
+===================================================================
+--- trunk/CMakeLists.txt	(revision 1714)
++++ trunk/CMakeLists.txt	(working copy)
+@@ -164,7 +164,7 @@
+ include_directories(${GSL_INCLUDE_DIRS} ${GSLCBLAS_INCLUDE_DIRS})
+ link_libraries( ${GSL_LIBRARIES}  ${GSLCBLAS_LIBRARIES})
+ add_definitions(${GSL_CFLAGS})
+-add_subdirectory(java)
++# add_subdirectory(java)
+ add_executable(bayesx ${SRC})
+ 
+ add_definitions(-D__BUILDING_GNU -DTEMPL_INCL_DEF -D_MSC_VER2 -DNO_TEMPLATE_FRIENDS -DINCLUDE_REML -DINCLUDE_MCMC -Os)

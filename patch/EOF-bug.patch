@@ -1,0 +1,21 @@
+Index: trunk/main.cpp
+===================================================================
+--- trunk/main.cpp	(revision 1714)
++++ trunk/main.cpp	(working copy)
+@@ -155,6 +155,11 @@
+
+       char *buf;
+       buf = readline("BayesX>");
++      if (buf == NULL) { // EOF
++        std::cout << "exiting" << std::endl;
++        exit(0);
++      }
++
+       ST::string* s=new ST::string(buf);
+       run = a.parse(*s);
+
+@@ -178,4 +183,3 @@
+
+   return(0);
+   }
+-

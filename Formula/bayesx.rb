@@ -19,7 +19,19 @@ class Bayesx < Formula
   depends_on "gsl"
   depends_on "readline"
 
-  option "with-sample-selection", "EXPERIMENTAL Enable support for sample selection models"
+  option "with-java", "Enable java support"
+
+  patch do
+    url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/EOF-bug.patch"
+    sha256 "00f868d7885b25630b3bb47e16c80d0ad7740be932ce91e4d8dc72932303d865"
+  end
+
+  unless build.with? "java"
+    patch do
+      url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/disable-java.patch"
+      sha256 "83833da1833db6b79a478db40bee31a4209d1adf06adbe164d35d2063117f36e"
+    end
+  end
 
 #  head do
 #    patch do
@@ -27,16 +39,6 @@ class Bayesx < Formula
 #      sha256 "1977e4f15ec0ba66d0d52fbabe7580d918f3d8b2c754d78cd57179d0899dbe54"
 #    end
 #  end
-
-
-if build.with? "sample-selection"
-   patch do
-     url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/sample_selection.diff"
-     sha256 "8d4d74fbaea59611856b022b2bc150e58df02f5f58754c4e9b3da3642755d1ae"
-   end
- end
-
-
 
   def install
     system "cmake", ".", *std_cmake_args
