@@ -21,10 +21,10 @@ class Bayesx < Formula
 
   option "with-java", "Enable java support"
 
-  patch do
-    url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/EOF-bug.patch"
-    sha256 "00f868d7885b25630b3bb47e16c80d0ad7740be932ce91e4d8dc72932303d865"
-  end
+#  patch do
+#    url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/EOF-bug.patch"
+#    sha256 "00f868d7885b25630b3bb47e16c80d0ad7740be932ce91e4d8dc72932303d865"
+#  end
 
   unless build.with? "java"
     patch do
