@@ -1,8 +1,8 @@
 Index: trunk/CMakeLists.txt
 ===================================================================
---- trunk/CMakeLists.txt	(revision 1714)
+--- trunk/CMakeLists.txt	(revision 1778)
 +++ trunk/CMakeLists.txt	(working copy)
-@@ -164,7 +164,7 @@
+@@ -165,7 +165,7 @@
  include_directories(${GSL_INCLUDE_DIRS} ${GSLCBLAS_INCLUDE_DIRS})
  link_libraries( ${GSL_LIBRARIES}  ${GSLCBLAS_LIBRARIES})
  add_definitions(${GSL_CFLAGS})

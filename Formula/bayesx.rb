@@ -29,7 +29,7 @@ class Bayesx < Formula
   unless build.with? "java"
     patch do
       url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/disable-java.patch"
-      sha256 "83833da1833db6b79a478db40bee31a4209d1adf06adbe164d35d2063117f36e"
+      sha256 "342d75de16d37ce0b395d47b32f49d44211149277bc72a93ac4800f22f9b3870"
     end
   end
 
