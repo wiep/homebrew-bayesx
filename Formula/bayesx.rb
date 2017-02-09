@@ -21,27 +21,12 @@ class Bayesx < Formula
 
   option "with-java", "Enable java support"
 
-#  patch do
-#    url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/EOF-bug.patch"
-#    sha256 "00f868d7885b25630b3bb47e16c80d0ad7740be932ce91e4d8dc72932303d865"
-#  end
-
-  unless build.with? "java"
-    patch do
-      url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/disable-java.patch"
-      sha256 "342d75de16d37ce0b395d47b32f49d44211149277bc72a93ac4800f22f9b3870"
-    end
-  end
-
-#  head do
-#    patch do
-#      url "https://raw.githubusercontent.com/wiep/homebrew-bayesx/master/patch/bayesx-eof-svnrevision.diff"
-#      sha256 "1977e4f15ec0ba66d0d52fbabe7580d918f3d8b2c754d78cd57179d0899dbe54"
-#    end
-#  end
-
   def install
-    system "cmake", ".", *std_cmake_args
+    args = ["-DWithoutDefaultOs=On"] + std_cmake_args
+    unless build.with? "java"
+      args.push("-DWithoutJava=On")
+    end
+    system "cmake", ".", *args
     system "make", "bayesx"
     bin.install "bayesx"
 
