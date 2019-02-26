@@ -35,7 +35,6 @@ class Bayesx < Formula
   sha256 "fd4b2321b0aed78d4dab70a25d3deb609ef5e5cbfb37317540b63b153c4e0b38"
 
   head "https://svn.gwdg.de/svn/bayesx/trunk/", :using => BayesXSvnStrategy
-  # meta :trust_cert => true
 
   depends_on "cmake" => :build
   depends_on "gsl"
