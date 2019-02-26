@@ -1,9 +1,30 @@
-# Documentation: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md
-#                /usr/local/Library/Contributions/example-formula.rb
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class BayesXSvnStrategy < SubversionDownloadStrategy
-  def quiet_safe_system *args
-    super *args + ['--username', 'anonymous',  '--password', '', '--no-auth-cache', '--non-interactive', '--trust-server-cert']
+
+  def fetch_repo(target, url, revision = nil, ignore_externals = false)
+    # Use "svn update" when the repository already exists locally.
+    # This saves on bandwidth and will have a similar effect to verifying the
+    # cache as it will make any changes to get the right revision.
+    args = []
+
+    if revision
+      ohai "Checking out #{@ref}"
+      args << "-r" << revision
+    end
+
+    args << "--ignore-externals" if ignore_externals
+
+    args << "--trust-server-cert-failures=expired"
+    args << "--non-interactive"
+    args << "--username"
+    args << "anonymous"
+    args << "--password"
+    args << ""
+
+    if target.directory?
+      system_command!("svn", args: ["update", *args], chdir: target.to_s)
+    else
+      system_command!("svn", args: ["checkout", url, target, *args])
+    end
   end
 end
 
@@ -13,7 +34,8 @@ class Bayesx < Formula
   version "3.0.1"
   sha256 "fd4b2321b0aed78d4dab70a25d3deb609ef5e5cbfb37317540b63b153c4e0b38"
 
-  head "https://svn.projects.gwdg.de/svn/bayesx/trunk", :using => BayesXSvnStrategy
+  head "https://svn.gwdg.de/svn/bayesx/trunk/", :using => BayesXSvnStrategy
+  # meta :trust_cert => true
 
   depends_on "cmake" => :build
   depends_on "gsl"
@@ -35,7 +57,6 @@ class Bayesx < Formula
     else
       prefix.install "LICENSE"
     end
-
   end
 
   test do
